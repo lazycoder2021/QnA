@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .question-panel{
+            display:flex; 
+            justify-content:center; 
+            align-items:center; 
+            height:100vh; 
+        }
+
+        .question-container {
+            border: 1px solid black;
+            width: 600px;
+            margin: 100px auto;
+            border-radius: 15px;
+            padding:35px 10px;
+            background-color:skyblue; 
+        }
+
+        .question{
+            width:80%; 
+            border:1px solid black;
+            margin:5px auto; 
+            padding: 5px;
+            border-radius:4px;
+            background-color:white;
+        }
+
+        .answers{
+            padding:3px;
+        }
+
+        .answer {
+            width: 80%;
+            border: 1px solid black;
+            margin: 5px auto 10px;
+            padding: 3px;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .buttons{
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            margin-top:10px;
+            border-radius:14px;
+        }
+
+        .prev, .next{
+            border:1px solid black;
+            padding:5px;
+            cursor:pointer; 
+            border-radius:4px;
+            background-color:black; 
+            color:white; 
+        }
+
+        .red{
+            background-color:red; 
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="question-panel">
+        <div class="question-container">
+            <div class="question">question</div>
+            <div class="answers">
+                <div class="answer answer1">answer 1</div>
+                <div class="answer answer2">answer 2</div>
+                <div class="answer answer3">answer 3</div>
+                <div class="answer answer4">answer 4</div>
+            </div>
+            <div class="buttons">
+                <div class="prev">Previous</div>
+                <div class="next">Next</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        var questions = [
+            {
+                'question': 'HTML Full Form?',
+                'answer1': 'hyper tension markup language',
+                'answer2': 'hyper tranquil markup language',
+                'answer3': 'hyper text markup language',
+                'answer4': 'hyper test markup language',
+                'answer': 'hyper text markup language'
+            },
+            {
+                'question': 'CSS Full Form?',
+                'answer1': 'cascade stylish sheet',
+                'answer2': 'cascading style sheet',
+                'answer3': 'cinema story sheet',
+                'answer4': 'corporate shit sheet',
+                'answer': 'cascading style sheet'
+            },
+            {
+                'question': 'JS Full Form?',
+                'answer1': 'Java Shit',
+                'answer2': 'Java Script',
+                'answer3': 'Jeeva Script',
+                'answer4': 'Jansi Script',
+                'answer': 'Java Script'
+            }
+        ]; 
+
+        var question = document.querySelector('.question'); 
+        var answer1 = document.querySelector('.answer1');
+        var answer2 = document.querySelector('.answer2');
+        var answer3 = document.querySelector('.answer3');
+        var answer4 = document.querySelector('.answer4');
+
+        var next = document.querySelector('.next'); 
+        var prev = document.querySelector('.prev'); 
+
+        var counter = 0; 
+
+        var answers = document.querySelectorAll('.answer'); 
+
+
+
+        answers.forEach((ans) => {
+            ans.addEventListener('click', function (e) {
+                console.log('clicked')
+                console.log(e.target.innerText)
+                
+                    if (e.target.innerText == questions[counter].answer) {
+                        alert('correct answer')
+                        //e.target.classList.add('green'); 
+                    } 
+
+                    if (e.target.innerText != questions[counter].answer) {
+                        alert('wrong answer')
+                        //e.target.classList.add('red'); 
+                         
+                }
+                
+
+            })
+        })
+
+        question.innerText = questions[counter].question;
+        answer1.innerText = questions[counter].answer1;
+        answer2.innerText = questions[counter].answer2;
+        answer3.innerText = questions[counter].answer3
+        answer4.innerText = questions[counter].answer4;
+
+
+
+
+        next.addEventListener('click', function () {
+            
+            counter++;
+            if (counter > questions.length - 1) {
+                counter = 0;
+            }
+            console.log(counter)
+            question.innerText = questions[counter].question;
+            answer1.innerText = questions[counter].answer1;
+            answer2.innerText = questions[counter].answer2;
+            answer3.innerText = questions[counter].answer3;
+            answer4.innerText = questions[counter].answer4; 
+            
+             
+
+        })
+
+        prev.addEventListener('click', function () {
+            
+            counter--;
+            if (counter < 0) {
+                counter = questions.length - 1;
+            }
+            console.log(counter)
+            question.innerText = questions[counter].question;
+            answer1.innerText = questions[counter].answer1;
+            answer2.innerText = questions[counter].answer2;
+            answer3.innerText = questions[counter].answer3;
+            answer4.innerText = questions[counter].answer4;
+          
+        })
+
+        
+        console.log(questions[0].answer)
+
+        /*questions.forEach((question) => {
+            console.log(question.answer); 
+        })*/
+    </script>
+</body>
+</html>
